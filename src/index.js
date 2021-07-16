@@ -4,15 +4,35 @@ import countriesTpl from './templates/countries.hbs';
 
 const refs = {
     countryCard: document.querySelector('.country-info'),
+    input: document.querySelector('#search-box'),
 };
+
+refs.input.addEventListener('input', onSearch);
+
+console.log(refs.input);
+
+function onSearch(event) {
+    const searchValue = event.currentTarget.value;
+    console.log(searchValue);
+    fetchCountries(`${searchValue}`);
+}
 
 const DEBOUNCE_DELAY = 300;
 
-fetchCountries('do');
+// then((response) => {
+//     if (!response.ok) {
+//       throw new Error(response.status);
+//     }
+//     return response.json();
+//   });
+
 
 function fetchCountries(name) {
-    console.log(name);
     return fetch(`https://restcountries.eu/rest/v2/name/${name}`).then(response => {
+        if (!response.ok) {
+            console.log('ups');
+            throw new Error(response.status);
+        }
         return response.json();
     })
         .then(countries => {
@@ -31,6 +51,8 @@ function fetchCountries(name) {
     
     }).catch(error => {
         console.log(error);
+    }).finally(() => {
+        searchValue.reset();
     });
 };
 

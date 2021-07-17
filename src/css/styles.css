@@ -25,7 +25,16 @@ ul {
   list-style: none;
 }
 
+img {
+  display: block;
+}
+
 .card-title {
   display: flex;
   gap: 20px;
+  align-items: center;
+}
+
+.ability-title {
+  font-weight: bold;
 }

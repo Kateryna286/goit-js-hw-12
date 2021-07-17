@@ -49,26 +49,44 @@ function onSearch(event) {
     };
 };
 
+function createCountryCardsMarkup(countries) {
+    return countries.map(countriesTpl).join('');
+};
+
 function renderCountryCardsMarkup(countries) {
-    //clearMarkup();
+
     const markup = createCountryCardsMarkup(countries);
-    //createCountryCardsMarkup(countries);
+    
     refs.countryList.innerHTML = markup;
 };
 
 function renderOneCountryCardMarkup(countries) {
-    //clearMarkup();
-    const markup = countryCardTpl(...countries);
-    refs.countryCard.innerHTML = markup;
+    countries.map(country => {
+        const allLangs = (country.languages.map(lang => lang.name).join(', '));
+        const langMarkup = `<p><span class="ability-title">Languages:</span> ${allLangs} </p>`;
+        const markup = countryCardTpl(country);
+        
+        refs.countryCard.insertAdjacentHTML('afterbegin', langMarkup);
+        refs.countryCard.insertAdjacentHTML('afterbegin', markup);
+    });
+
 };
 
-function createCountryCardsMarkup(countries) {
-    return countries.map(countriesTpl).join('');
-};
+
 
 function clearMarkup() {
     refs.countryList.innerHTML = "";
     refs.countryCard.innerHTML = "";
 };
+
+
+// function fullDescriptionCountry(...countries) {
+//   const markup = countryMarkup(countries[0]);
+//   const countryLanguage = countries[0].languages;
+//   const languagesList = (countryLanguage.map(language => language.name).join(', '));
+//   const languagesMarkup = `<p class="country_detail">Languages: ${languagesList} </p>`;
+//   refs.countryContentEl.insertAdjacentHTML('afterbegin', languagesMarkup);
+//   refs.countryContentEl.insertAdjacentHTML('afterbegin', markup);
+// }
 
 

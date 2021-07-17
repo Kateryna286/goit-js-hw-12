@@ -80,13 +80,3 @@ function clearMarkup() {
 };
 
 
-// function fullDescriptionCountry(...countries) {
-//   const markup = countryMarkup(countries[0]);
-//   const countryLanguage = countries[0].languages;
-//   const languagesList = (countryLanguage.map(language => language.name).join(', '));
-//   const languagesMarkup = `<p class="country_detail">Languages: ${languagesList} </p>`;
-//   refs.countryContentEl.insertAdjacentHTML('afterbegin', languagesMarkup);
-//   refs.countryContentEl.insertAdjacentHTML('afterbegin', markup);
-// }
-
-

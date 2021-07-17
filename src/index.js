@@ -1,8 +1,9 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
+import { Notify } from 'notiflix';
 import countryCardTpl from './templates/country.hbs';
 import countriesTpl from './templates/countries.hbs';
-//import {fetchCountries} from './fetchCountries';
+import {fetchCountries} from './fetchCountries';
 
 
 const refs = {
@@ -17,11 +18,11 @@ refs.input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(event) {
     const searchValue = event.target.value;
-    console.log(searchValue);
+    clearMarkup();
     
+    if (searchValue !== '') {
         fetchCountries(searchValue)
             .then(countries => {
-
                 if (countries.length === 1) {
                     renderOneCountryCardMarkup(countries);
                 }
@@ -31,27 +32,21 @@ function onSearch(event) {
                 }
 
                 else {
-                    console.log('error');
+                    Notify.info(
+                        ('Too many matches found. Please enter a more specific name.'),
+                        {
+                            timeout: 1000,
+                        });
                 };
     
             }).catch(error => {
-                console.log('catch');
-                clearMarkup();
+                Notify.failure(
+                    ('Oops, there is no country with that name'),
+                    {
+                        timeout: 1000,
+                    });
             });
-    
-};
-
-function fetchCountries(name) {
-    const url = `https://restcountries.eu/rest/v2/name/${name}`
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                console.log('ups');
-                throw new Error(response.status);
-            }
-            return response.json();
-        });
-    
+    };
 };
 
 function renderCountryCardsMarkup(countries) {
@@ -74,8 +69,6 @@ function createCountryCardsMarkup(countries) {
 function clearMarkup() {
     refs.countryList.innerHTML = "";
     refs.countryCard.innerHTML = "";
-}
-
-
+};
 
 

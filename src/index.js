@@ -50,14 +50,14 @@ function onSearch(event) {
 };
 
 function renderCountryCardsMarkup(countries) {
-    clearMarkup();
+    //clearMarkup();
     const markup = createCountryCardsMarkup(countries);
-    createCountryCardsMarkup(countries);
+    //createCountryCardsMarkup(countries);
     refs.countryList.innerHTML = markup;
 };
 
 function renderOneCountryCardMarkup(countries) {
-    clearMarkup();
+    //clearMarkup();
     const markup = countryCardTpl(...countries);
     refs.countryCard.innerHTML = markup;
 };

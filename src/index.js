@@ -27,7 +27,7 @@ function onSearch(event) {
                     renderOneCountryCardMarkup(countries);
                 }
         
-                else if (countries.length > 1 && countries.length < 10) {
+                else if (countries.length > 1 && countries.length <= 10) {
                     renderCountryCardsMarkup(countries);
                 }
 

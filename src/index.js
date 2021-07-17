@@ -33,17 +33,17 @@ function onSearch(event) {
 
                 else {
                     Notify.info(
-                        ('Too many matches found. Please enter a more specific name.'),
+                        'Too many matches found. Please enter a more specific name.',
                         {
-                            timeout: 1000,
+                            timeout: 2000,
                         });
                 };
     
             }).catch(error => {
                 Notify.failure(
-                    ('Oops, there is no country with that name'),
+                    'Oops, there is no country with that name',
                     {
-                        timeout: 1000,
+                        timeout: 2000,
                     });
             });
     };

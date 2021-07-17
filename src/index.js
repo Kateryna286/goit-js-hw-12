@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix';
 import countryCardTpl from './templates/country.hbs';
 import countriesTpl from './templates/countries.hbs';
-import {fetchCountries} from './fetchCountries';
+import {fetchCountries} from './js/fetchCountries';
 
 
 const refs = {

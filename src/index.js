@@ -72,8 +72,6 @@ function renderOneCountryCardMarkup(countries) {
 
 };
 
-
-
 function clearMarkup() {
     refs.countryList.innerHTML = "";
     refs.countryCard.innerHTML = "";

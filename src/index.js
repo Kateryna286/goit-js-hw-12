@@ -17,7 +17,7 @@ const DEBOUNCE_DELAY = 300;
 refs.input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(event) {
-    const searchValue = event.target.value;
+    const searchValue = event.target.value.trim();
     clearMarkup();
     
     if (searchValue !== '') {
